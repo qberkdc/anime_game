@@ -91,7 +91,7 @@ function updateEnergyBar() {
 updateHealthBar(); // Sayfa yüklendiğinde can çubuğunu güncelle
 
 character.addEventListener("click", (event) => {
- if(health > 0) {
+ if(health > 0 && isTime) {
   const damage = Math.floor(Math.random() * 7) + global_damage; // Rastgele 10-16 arası hasar
 	
   if (energy >= 3 && health > 0) {
