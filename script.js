@@ -252,7 +252,7 @@ function showPopup(message, timeout = 1250, top = 30) {
     // Popup'ı sayfaya ekleyin
     document.body.appendChild(popup);
 
-    // Popup'ı ekranın ortasına yerleştirin
+    // CSS stillerini ekleyin
     popup.style.position = 'fixed';
     popup.style.top = top + '%';
     popup.style.left = '50%';
@@ -261,16 +261,22 @@ function showPopup(message, timeout = 1250, top = 30) {
     popup.style.padding = '20px'; // Popup içeriği için padding
     popup.style.borderRadius = '30px'; // Kenar yuvarlatma
     popup.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.3)'; // Gölge efekti
+    popup.style.opacity = '0'; // Başlangıçta görünmez
+    popup.style.transition = 'opacity 0.5s'; // Geçiş süresi (0.5 saniye)
 
-    // Arkaplanı blur yapmak için overlay ekleyin
-    const overlay = document.createElement('div');
-    overlay.className = 'overlay';
-    document.body.appendChild(overlay);
+    // Bir sonraki işleme kadar bekle, ardından görünür hale getir
+    requestAnimationFrame(() => {
+        popup.style.opacity = '1';
+    });
 
-    // Belirli bir süre sonra popup'ı ve overlay'i kaldırın
+    // Belirli bir süre sonra popup'ı kaldırırken fade out efekti ekleyin
     setTimeout(() => {
-        popup.remove();
-        overlay.remove();
+        popup.style.opacity = '0'; // Görünmez hale getir
+
+        // Geçiş tamamlandığında popup'ı kaldırın
+        popup.addEventListener('transitionend', () => {
+            popup.remove();
+        });
     }, timeout); // belirli saniye sonra kaldır
 }
 
