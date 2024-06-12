@@ -332,7 +332,7 @@ function saveData() {
 }
 
 function loadData() {
-	if (getCookie("stage") === "") {
+	if (getCookie("character") === "") {
 		return "";
 	}
 	else {
