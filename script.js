@@ -12,6 +12,7 @@ let energy = 50;
 let energyMax = 50;
 let isAttacking = 0;
 let isUpgrade = 0;
+var character_img = "images/character1.png";
 
 const pain = [
 	"sound/pain1.m4a",
@@ -172,6 +173,7 @@ function changeCharacter() {
 	const characterID = Math.floor(Math.random() * characters.length);
 	const character = document.getElementById("charImage");
 	character.src = characters[characterID];
+	character_img = characters[characterID];
 }
 
 function updateLevel() {
@@ -326,6 +328,7 @@ function saveData() {
 	setCookie("damage", global_damage);
 	setCookie("energy", energy);
 	setCookie("energyMax", energyMax);
+	setCookie("character", character_img);
 }
 
 function loadData() {
@@ -344,9 +347,14 @@ function loadData() {
 		global_damage = parseInt(getCookie("damage"));
 		energy = parseInt(getCookie("energy"));
 		energyMax = parseInt(getCookie("energyMax"));
+		character_img = getCookie("character");
+		
+		const character = document.getElementById("charImage");
+		character.src = character_img;
 	}
 }
 
+changeCharacter();
 loadData();
 setInterval(reloadEnergy, 150);
 setInterval(timeLeft, 1000);
@@ -354,4 +362,3 @@ setInterval(saveData, 500);
 updateHealthBar();
 updateEnergyBar();
 updateHeader();
-changeCharacter();
