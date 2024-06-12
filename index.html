@@ -5,28 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Clicker Oyunu</title>
 <link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="header" id="stage"></div>
 
 <div class="container">
 <div id="character">
-  <p> </p>
-  <img id="charImage" src="character11.png" alt="Character">
-  <p> </p>
+  <div style="height: 8px;"></div>
+  <img id="charImage" style="border-radius: 50px" src="character11.png" alt="Character">
+  <div style="height: 8px;"></div>
   <div id="healthBarContainer">
     <div id="healthBar"></div>
     <div id="healthText">100 / 100</div>
   </div>
-  <p> </p>
+  <div style="height: 8px;"></div>
   <div id="energyBarContainer">
     <div id="energyBar"></div>
     <div id="energyText">50 / 50</div>
   </div>
   <div class="particles"></div>
 </div>
-<p> </p>
-<button id="upgrade" class="luxury-button">Upgrade</button>
+<div style="height: 8px;"></div>
+<div class="button_container">
+  <button id="upgrade_damage" style="background: rgba(255, 100, 25, 1.0);" class="luxury-button">🔥</button>
+  <button id="upgrade_energy" style="background: rgba(133, 0, 255, 1.0);" class="luxury-button">⚡️</button>
+</div>
 </div>
 
 <script src="script.js"></script>
