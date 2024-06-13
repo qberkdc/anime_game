@@ -88,19 +88,35 @@ character.addEventListener("click", (event) => {
 	
   if (energy >= 3 && health > 0) {
 	  for (let i = 0; i < 15; i++) {
+		let randomsize = 3 + Math.random() * 14
  	   const particle = document.createElement("div");
  	   particle.classList.add("particle");
  	   particle.style.top = event.clientY + "px";
  	   particle.style.left = event.clientX + "px";
+ 	   particle.style.width = randomsize + "px";
+ 	   particle.style.height = randomsize + "px";
  	   particle.style.setProperty("--x", Math.random() * 500 - 300 + "px");
  	   particle.style.setProperty("--y", Math.random() * 500 - 300 + "px");
  	   document.body.appendChild(particle);
-
+		
  	   setTimeout(() => {
  	     particle.remove();
  	   }, 1000); 
 	  }
+ 	
+		const dmgtxt = document.createElement("div");
+		dmgtxt.classList.add("dmgtext");
+		dmgtxt.style.top = event.clientY + "px";
+		dmgtxt.style.left = event.clientX + "px";
+		dmgtxt.style.setProperty("--x", Math.random() * 100 - 50 + "px");
+ 	   dmgtxt.style.setProperty("--y", Math.random() * 100 - 50 + "px");
+		dmgtxt.textContent = "-" + damage;
+		document.body.appendChild(dmgtxt);
   
+ 	   setTimeout(() => {
+ 	     dmgtxt.remove();
+ 	   }, 580); 
+ 
     if(!isAttacking) { isAttacking = 1; }
     let timeoutID = setTimeout(() => { isAttacking = 0; }, 1000); clearTimeout(timeoutID);
     timeoutID = setTimeout(() => { isAttacking = 0; }, 1000);
