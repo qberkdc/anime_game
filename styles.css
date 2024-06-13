@@ -4,6 +4,7 @@ body {
   align-items: center;
   height: 100vh;
   font-family: 'Poppins', sans-serif;
+  font-size: 18px;
   background-color: #191919;
   background-image: url('images/background1.jpg');
   background-size: cover;
@@ -172,7 +173,7 @@ body {
   color: white;
   padding: 20px 0;
   text-align: center;
-  font-size: 33px;
+  font-size: 14px;
   position: fixed;
   top: 0;
 }

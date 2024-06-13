@@ -189,7 +189,7 @@ function updateLevel() {
 }
 
 function updateHeader() {
-	stageDisplay.textContent = `🏞️ ${stage}  🌀 ${level} ${exp}/${max_exp}  🪙 ${coin}  🔥 ${global_damage}`;
+	stageDisplay.textContent = `🏞️ ${stage}    🌀 ${level} ${exp}/${max_exp}    🪙 ${coin}    🔥 ${global_damage}`;
 }
 
 upgrade_damage.addEventListener("click", (event) => {
@@ -255,7 +255,8 @@ function showPopup(message, timeout = 1250, top = 30) {
     popup.style.transform = 'translate(-50%, -50%)';
     popup.style.backgroundColor = 'white'; 
     popup.style.padding = '20px';
-    popup.style.borderRadius = '30px'; 
+    popup.style.fontSize = '10px';
+    popup.style.borderRadius = '80px'; 
     popup.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.3)';
     popup.style.opacity = '0';
     popup.style.transition = 'opacity 0.5s'; 
@@ -276,7 +277,7 @@ function timeLeft() {
 	if (isTime) {
 		if (time) {
 			var message = "⏳ " + time;
-			showPopup(message, 999, 71);
+			showPopup(message, 800, 71);
 			time--;
 		}
 		else {
