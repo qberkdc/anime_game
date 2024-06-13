@@ -87,6 +87,9 @@ character.addEventListener("click", (event) => {
   const damage = Math.floor(Math.random() * 7) + global_damage;
 	
   if (energy >= 3 && health > 0) {
+  	charImage.classList.add('red-filter')
+  	setTimeout(() => {charImage.classList.remove('red-filter');}, 100);
+  
 	  for (let i = 0; i < 15; i++) {
 		let randomsize = 3 + Math.random() * 14
  	   const particle = document.createElement("div");

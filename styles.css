@@ -187,3 +187,7 @@ body {
   position: fixed;
   top: 0;
 }
+
+.red-filter {
+  filter: sepia(100%) hue-rotate(-50deg) saturate(500%);
+}
