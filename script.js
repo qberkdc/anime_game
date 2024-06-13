@@ -70,7 +70,7 @@ function playSound(url) {
 }
         
 function updateHealthBar() {
-  maxHealth = 100 + (80 * (stage-1));
+  maxHealth = (100 + (80 * (stage-1)) + (stage*20))
   healthText.textContent = `${health} / ${maxHealth}`;
   const ratio = health * 100 / maxHealth;
   healthBar.style.width = ratio + "%";
@@ -129,7 +129,7 @@ character.addEventListener("click", (event) => {
   if (health <= 0) {
     let reward_coin =  2.5 + (stage*2) | 0;
     let reward_exp = 2 + (stage*1.25) | 0;
-    var message = "You won +" + reward_coin + " 🪙 and " + reward_exp + " 🌀";
+    var message = "You won +" + reward_coin + " 🪙 | " + reward_exp + " 🌀";
 	showPopup(message, 3000);
 	isUpgrade = 1; isAttacking = 1;
     health = 0; updateHealthBar();
@@ -144,7 +144,7 @@ character.addEventListener("click", (event) => {
     exp += reward_exp;
     updateLevel(); updateHeader();
     changeCharacter();
-    health = 100 + (80 * (stage-1));
+    health = (100 + (80 * (stage-1)) + (stage*20));
     updateHealthBar();
     playSound(hehe);
     }, 3000);
