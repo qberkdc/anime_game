@@ -172,6 +172,14 @@ function updateLevel() {
 			level++;
 			exp = 0;
 			max_exp += 80;
+			
+			let reward_coin =  17.5 + (level*3.20) | 0;
+		    let reward_damage = 8 + (level*2.8) | 0;
+		    var message = "You won level up+" + reward_coin + " 🪙 and " + reward_damage + " 🔥";
+			showPopup(message, 3000, 60);
+			coin += reward_coin;
+			global_damage += reward_damage;
+	
 			playSound(good_job);
 		}
 		else {
