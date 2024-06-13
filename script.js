@@ -50,23 +50,17 @@ const upgrade_energy = document.getElementById("upgrade_energy");
 const stageDisplay = document.getElementById("stage");
 
 function setCookie(variable, value) {
-    // Cookie'nin adı, değeri ve süresini belirleyerek oluşturuyoruz
     document.cookie = variable + "=" + value + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
 }
 
 function getCookie(variable) {
-    // Tüm cookie'leri alıyoruz ve ";" ile ayırarak bir diziye atıyoruz
     var cookies = document.cookie.split(';');
-
-    // Verilen değişken adının bulunduğu cookie'yi arıyoruz
     for (var i = 0; i < cookies.length; i++) {
         var cookie = cookies[i].trim();
         if (cookie.indexOf(variable + "=") === 0) {
-            // Değer bulunduğunda sadece değeri döndürüyoruz
             return cookie.substring(variable.length + 1);
         }
     }
-    // Değer bulunamazsa boş bir string döndürüyoruz
     return "";
 }
 
@@ -77,44 +71,40 @@ function playSound(url) {
         
 function updateHealthBar() {
   maxHealth = 100 + (80 * (stage-1));
-  healthText.textContent = `${health} / ${maxHealth}`; // Can miktarını güncelle
-  const ratio = health * 100 / maxHealth; // Oranı hesapla
-  healthBar.style.width = ratio + "%"; // Can çubuğunun genişliğini ayarla
+  healthText.textContent = `${health} / ${maxHealth}`;
+  const ratio = health * 100 / maxHealth;
+  healthBar.style.width = ratio + "%";
 }
 
 function updateEnergyBar() {
-  energyText.textContent = `${energy} / ${energyMax}`; // Can miktarını güncelle
-  const ratio = energy * 100 / energyMax; // Oranı hesapla
-  energyBar.style.width = ratio + "%"; // Can çubuğunun genişliğini ayarla
+  energyText.textContent = `${energy} / ${energyMax}`;
+  const ratio = energy * 100 / energyMax;
+  energyBar.style.width = ratio + "%";
 }
-
-updateHealthBar(); // Sayfa yüklendiğinde can çubuğunu güncelle
 
 character.addEventListener("click", (event) => {
  if(health > 0 && isTime) {
-  const damage = Math.floor(Math.random() * 7) + global_damage; // Rastgele 10-16 arası hasar
+  const damage = Math.floor(Math.random() * 7) + global_damage;
 	
   if (energy >= 3 && health > 0) {
-  	// Partikül oluştur ve hareketini tanımla
-	  for (let i = 0; i < 30; i++) { // 10 adet partikül oluştur
+	  for (let i = 0; i < 15; i++) {
  	   const particle = document.createElement("div");
  	   particle.classList.add("particle");
- 	   particle.style.top = event.clientY + "px"; // Mouse yatay pozisyonu
- 	   particle.style.left = event.clientX + "px"; // Mouse dikey pozisyonu
- 	   particle.style.setProperty("--x", Math.random() * 500 - 300 + "px"); // Rastgele yön (x ekseni)
- 	   particle.style.setProperty("--y", Math.random() * 500 - 300 + "px"); // Rastgele yön (y ekseni)
+ 	   particle.style.top = event.clientY + "px";
+ 	   particle.style.left = event.clientX + "px";
+ 	   particle.style.setProperty("--x", Math.random() * 500 - 300 + "px");
+ 	   particle.style.setProperty("--y", Math.random() * 500 - 300 + "px");
  	   document.body.appendChild(particle);
 
-	    // Partikülü ekrandan kaldır
  	   setTimeout(() => {
  	     particle.remove();
- 	   }, 1000); // 1 saniye sonra partikülü kaldır
+ 	   }, 1000); 
 	  }
   
     if(!isAttacking) { isAttacking = 1; }
     let timeoutID = setTimeout(() => { isAttacking = 0; }, 1000); clearTimeout(timeoutID);
     timeoutID = setTimeout(() => { isAttacking = 0; }, 1000);
-    energy -= 3; health -= damage; updateHealthBar(); // Can çubuğunu güncelle
+    energy -= 3; health -= damage; updateHealthBar();
     updateEnergyBar();
     const soundID = Math.floor(Math.random() * pain.length);
     playSound(pain[soundID]);
@@ -126,7 +116,7 @@ character.addEventListener("click", (event) => {
     var message = "You won +" + reward_coin + " 🪙 and " + reward_exp + " 🌀";
 	showPopup(message, 3000);
 	isUpgrade = 1; isAttacking = 1;
-    health = 0; updateHealthBar(); // Can çubuğunu güncelle
+    health = 0; updateHealthBar();
     playSound(congratulations);
     isTime = 0;
     
@@ -138,8 +128,8 @@ character.addEventListener("click", (event) => {
     exp += reward_exp;
     updateLevel(); updateHeader();
     changeCharacter();
-    health = 100 + (80 * (stage-1)); // Aşama arttıkça daha fazla can ekle
-    updateHealthBar(); // Can çubuğunu güncelle
+    health = 100 + (80 * (stage-1));
+    updateHealthBar();
     playSound(hehe);
     }, 3000);
   }
@@ -249,35 +239,29 @@ function showPopup(message, timeout = 1250, top = 30) {
     popup.className = 'popup';
     popup.textContent = message;
 
-    // Popup'ı sayfaya ekleyin
     document.body.appendChild(popup);
 
-    // CSS stillerini ekleyin
     popup.style.position = 'fixed';
     popup.style.top = top + '%';
     popup.style.left = '50%';
     popup.style.transform = 'translate(-50%, -50%)';
-    popup.style.backgroundColor = 'white'; // Popup arka plan rengi
-    popup.style.padding = '20px'; // Popup içeriği için padding
-    popup.style.borderRadius = '30px'; // Kenar yuvarlatma
-    popup.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.3)'; // Gölge efekti
-    popup.style.opacity = '0'; // Başlangıçta görünmez
-    popup.style.transition = 'opacity 0.5s'; // Geçiş süresi (0.5 saniye)
+    popup.style.backgroundColor = 'white'; 
+    popup.style.padding = '20px';
+    popup.style.borderRadius = '30px'; 
+    popup.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.3)';
+    popup.style.opacity = '0';
+    popup.style.transition = 'opacity 0.5s'; 
 
-    // Bir sonraki işleme kadar bekle, ardından görünür hale getir
     requestAnimationFrame(() => {
         popup.style.opacity = '1';
     });
 
-    // Belirli bir süre sonra popup'ı kaldırırken fade out efekti ekleyin
     setTimeout(() => {
-        popup.style.opacity = '0'; // Görünmez hale getir
-
-        // Geçiş tamamlandığında popup'ı kaldırın
+        popup.style.opacity = '0';
         popup.addEventListener('transitionend', () => {
             popup.remove();
         });
-    }, timeout); // belirli saniye sonra kaldır
+    }, timeout);
 }
 
 function timeLeft() {
@@ -360,11 +344,10 @@ function loadData() {
 	}
 }
 
-changeCharacter();
-loadData();
+changeCharacter(); loadData();
 setInterval(reloadEnergy, 150);
 setInterval(timeLeft, 1000);
 setInterval(saveData, 500);
-updateHealthBar();
-updateEnergyBar();
-updateHeader();
+setInterval(updateHealthBar, 80);
+setInterval(updateEnergyBar, 80);
+setInterval(updateHeader, 80);
