@@ -187,7 +187,7 @@ function updateLevel() {
 		if (exp >= max_exp) {
 			level++;
 			exp = 0;
-			max_exp += 80;
+			max_exp += 80 + (stage*3.5) | 0;
 			
 			let reward_coin =  17.5 + (level*3.20) | 0;
 		    let reward_damage = 8 + (level*2.8) | 0;
