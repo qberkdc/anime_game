@@ -70,7 +70,7 @@ function playSound(url) {
 }
         
 function updateHealthBar() {
-  maxHealth = (100 + (80 * (stage-1)) + (stage*20))
+  maxHealth = 100 + (80 * (stage-1)) * (stage*0.25) | 0;
   healthText.textContent = `${health} / ${maxHealth}`;
   const ratio = health * 100 / maxHealth;
   healthBar.style.width = ratio + "%";
@@ -144,7 +144,7 @@ character.addEventListener("click", (event) => {
     exp += reward_exp;
     updateLevel(); updateHeader();
     changeCharacter();
-    health = (100 + (80 * (stage-1)) + (stage*20));
+    health = 100 + (80 * (stage-1)) * (stage*0.25) | 0;
     updateHealthBar();
     playSound(hehe);
     }, 3000);
